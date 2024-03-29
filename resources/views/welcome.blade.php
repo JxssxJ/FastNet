@@ -19,15 +19,32 @@
   </head>
 
   <body>
-      <nav class="navbar d-flex justify-content-center" style="background-color: #FFFFFF;">
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        a {
+            font-family: "Comfortaa", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+ 
+    </style>
+      <nav class="navbar d-flex justify-content-center" style="background-color: #FEFEFE;">
           <a class="navbar-brand" href="/">
               <div class="container">
-                  <img src="/img/slogan.png" alt="Bootstrap" width="100" height="50">
-              </div>
+               <video class="object-fit-fill" src="/img/logovideo.mp4"
+               autoplay
+               loop
+               muted
+               width="200px"></video>   
+            </div>
           </a>
       </nav>
 
-      <div class="container">
+      <div class="container p-2">
           <div class="row" id="opcoes-container">
               <div class="col-sm-4 mb-3 mb-sm-0"">
                   <div class="card" style="width: 22rem;">
@@ -47,15 +64,15 @@
               </div>
               <div class="col-sm-4 mb-3 mb-sm-0"">
                   <div class="card" style="width: 22rem;">
-                      <img src="/img/telefonia.jpg" class="card-img-top">
+                      <img src="/img/tv.png" class="card-img-top">
                       <div class="card-body">
-                          <h5 class="card-title">Planos de Telefonia</h5>
-                          <p class="card-text">Gerenciar quantidade de internet, minutos para ligações e valores de
+                          <h5 class="card-title">Planos de TELEVISÃO</h5>
+                          <p class="card-text">Gerenciar tipos de canais, quantidade de telas e valores de
                               todos os
                               seus planos em
                               um só lugar!</p>
-                          <a href="plano" class="btn btn-primary">Clique aqui para acessar os planos de
-                              <b>TELEFONIA</b></a>
+                          <a href="planotv" class="btn btn-primary">Clique aqui para acessar os planos de
+                              <b>TELEVISÃO</b></a>
                       </div>
                   </div>
               </div>
