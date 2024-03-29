@@ -15,8 +15,9 @@
     <div class="container">
         <div class="
         0t">
-            <h3 class="col-md-8 offset-md-4 p-3"><span
-                class="p-2 bg-opacity-80 border border-success rounded-start bg-success-subtle rounded-end">Formulário de Plano</span></h3>
+            <h3 class="col-12 p-3 text-center"><span
+                    class="p-2 bg-opacity-80 border border-success rounded-start bg-success-subtle rounded-end">Formulário de
+                    Plano</span></h3>
             <form action="{{ $route }}" method="post">
 
                 @csrf
@@ -43,15 +44,17 @@
 
                 <div class="form-group col-md-6 offset-md-3">
                     <label class="text-white"><b>Possui locação de equipamentos?</b></label><br>
-                    <select name="text" id="locacao">
-                        <option
-                            value="@if (!empty($dado->locacao)) {{ $dado->locacao }}@elseif (!empty(old('locacao'))){{ old('locacao') }}@else{{ '1' }} @endif"">
+                    <select name="locacao" id="locacao">
+                        <option selected 
+                            value="1">
                             Sim</option>
                         <option
-                            value="@if (!empty($dado->locacao)) {{ $dado->locacao }}@elseif (!empty(old('locacao'))){{ old('locacao') }}@else{{ '0' }} @endif"">
+                            value="0">
                             Não</option>
                     </select>
                 </div><br>
+                    
+
                 <div class="form-group col-md-6 offset-md-3">
                     <label class="text-white"><b>Tipo de Conexão:</b></label><br>
                     <select name="conexao_id" class="form-select">
@@ -65,7 +68,7 @@
                     <button type="submit" class="btn btn-success">Salvar</button>
                     <a href="{{ url('plano') }}" class="btn btn-primary">Voltar</a>
                 </div>
-                
+
             </form>
         </div>
     </div>

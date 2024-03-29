@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="row row-gap-3 justify-content-center">
-            <h4 class="col-md-5 offset-1 p-3"><span
+            <h4 class="col-12 p-3 text-center"><span
                     class="p-2 bg-info bg-opacity-10 border rounded-start border-info rounded-end text-white"><b>Listagem de Produtos</b></span></h4>
 
             <form action="{{ route('produto.search') }}" method="post">

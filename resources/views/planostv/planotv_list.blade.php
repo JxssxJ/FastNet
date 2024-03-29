@@ -8,13 +8,13 @@
         <div class="row row-gap-3 justify-content-center">
             <h4 class="col-12 p-3 text-center"><span
                     class="p-2 bg-info bg-opacity-10 border rounded-start border-info rounded-end text-white"><b>Listagem de
-                        Planos de Internet</b></span></h4>
+                        Planos de TV</b></span></h4>
 
-            <form action="{{ route('plano.search') }}" method="post">
+            <form action="{{ route('planotv.search') }}" method="post">
                 <div class="row">
                     @csrf
                     <div class="col-md-4">
-                        <input type="text" name="mega" class="form-control" placeholder="Digite sua pesquisa">
+                        <input type="text" name="nome" class="form-control" placeholder="Digite sua pesquisa">
 
                     </div>
                     <div class="col-md-2">
@@ -22,7 +22,7 @@
                             Buscar</button>
                     </div>
                     <div class="col-md-2 offset-md-4">
-                        <a href="{{ url('plano/create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i>
+                        <a href="{{ url('planotv/create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i>
                             Novo</a>
                     </div>
                 </div>
@@ -34,10 +34,9 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Velocidade (Mbps)</th>
+                        <th>Nome do Plano</th>
+                        <th>Quantidade de Telas</th>
                         <th>Valor(R$)</th>
-                        <th>Locação de Equipamentos</th>
-                        <th>Tipo de Conexão</th>
                         <th>Ação</th>
                         <th>Ação</th>
                     </tr>
@@ -47,25 +46,15 @@
                     @foreach ($dado as $item)
                         <tr>
                             <td class="text-secondary">{{ $item->id }}</td>
-                            <td>{{ $item->mega }}</td>
+                            <td>{{ $item->nome }}</td>
+                            <td>{{ $item->qtd_telas }}</td>
                             <td>{{ $item->valor }}</td>
-                            <td>
-                                @if (0!=($item->locacao))
-                                    {{ 'Sim' }}
-                                    @else{{ 'Não' }}
-                                @endif
-                            </td>
-                            <td>{{ ($item->conexao->descricao) ?? ''}}</td>
+        
 
-
-
-
-
-
-                            <td><a href="{{ route('plano.edit', $item->id) }} "class="btn btn-primary" title="Editar"><i
+                            <td><a href="{{ route('planotv.edit', $item->id) }} "class="btn btn-primary" title="Editar"><i
                                         class="fa-solid fa-pen"></i></a></td>
                             <td>
-                                <form action="{{ route('plano.destroy', $item) }}" method="post">
+                                <form action="{{ route('planotv.destroy', $item) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger" title="Deletar"

@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             Plano_InternetSeeder::class,
             DepartamentoSeeder::class,
             ProdutoSeeder::class,
+            PlanoTVSeeder::class,
+
         ]);
     }
 }

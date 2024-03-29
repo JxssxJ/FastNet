@@ -58,7 +58,7 @@
                         <a class="nav-link active text-primary-emphasis" aria-current="page" href="/plano"><i class="fa-solid fa-wifi"></i> Planos de Internet</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="#"><i class="fa-solid fa-tv"></i> Planos de TV</a>
+                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/planotv"><i class="fa-solid fa-tv"></i> Planos de TV</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-primary-emphasis" aria-current="page" href="/produto"><i class="fa-solid fa-box-open"></i> Produtos</a>

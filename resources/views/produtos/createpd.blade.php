@@ -14,7 +14,7 @@
 
     <div class="container">
         <div class="row row-gap-3 justify-content-center">
-            <h3 class="col-md-8 offset-md-4 p-3"">
+            <h3 class="col-12 p-3 text-center">
                 <span class="p-2 bg-opacity-80 border border-success rounded-start bg-success-subtle rounded-end">
                     Formulário de produto
                 </span>

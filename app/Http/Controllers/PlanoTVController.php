@@ -4,19 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Plano_Internet;
-use App\Models\Conexao;
+use App\Models\planotv;
 
-class PlanoController extends Controller
+
+class PlanoTVController extends Controller
 {
     public function index()
     {
         //app/http/Controller
-        $dado = Plano_Internet::all();
+        $dado = planotv::all();
 
         //dd($dado);
 
-        return view("planos.plano_list", ["dado" => $dado]);
+        return view("planostv.planotv_list", ["dado" => $dado]);
     }
 
     /**
@@ -24,9 +24,7 @@ class PlanoController extends Controller
      */
     public function create()
     {
-        $conexoes = Conexao::all();
-
-        return view("planos.create", ['conexoes' => $conexoes]);
+        return view("planostv.createtv");
     }
 
     /**
@@ -35,36 +33,35 @@ class PlanoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'mega' => "required|max:4",
-            'valor' => "required|max:16",
-            'conexao_id' => "required"
+            'nome' => "required|max:255",
+            'valor' => "required",
+            'qtd_telas' => "required|numeric"
             
         ], [
-            'mega.required' => "O :attribute é obrigatório",
-            'mega.max' => "Só é permitido 4 caracteres",
+            'nome.required' => "O :attribute é obrigatório",
+            'nome.max' => "Só é permitido 255 caracteres",
             'valor.required' => "O :attribute é obrigatório",
-            'valor.max' => "Só é permitido 16 caracteres",
-            'conexao_id.required' => "O :attibute é obrigatório!",
-            
-
+            'valor.numeric' => "O valor precisa ser numérico!",
+            'qtd_telas.required' => "O :attribute é obrigatório",
+            'qtd_telas.numeric' => "O valor precisa ser numérico!",
         ]);
 
         $data = $request->all();
  
         /*
-        $plano = new Plano_Internet;
+        $plano = new planotv;
 
-        $plano->mega = $request->mega;
+        $plano->nome = $request->nome;
         $plano->conexao_id = $request->conexao_id;
         $plano->valor = $request->valor;
         $plano->locacao = $request->locacao;
 
         $plano->save();
       */
-      Plano_Internet::create($data);
+      planotv::create($data);
         
 
-        return redirect('plano');
+        return redirect('planotv');
     }
 
     /**
@@ -80,13 +77,11 @@ class PlanoController extends Controller
      */
     public function edit(string $id)
     {
-        $dado = Plano_Internet::findOrFail($id);
+        $dado = planotv::findOrFail($id);
 
-        $conexoes = Conexao::all();
 
-        return view("planos.create", [
+        return view("planostv.createtv", [
             'dado' => $dado,
-            'conexoes' => $conexoes
         ]);
     }
 
@@ -98,26 +93,27 @@ class PlanoController extends Controller
         //app/http/Controller
 
         $request->validate([
-            'mega' => "required|max:4",
-            'valor' => "required|max:16",
-            'conexao_id' => "required",
+            'nome' => "required|max:255",
+            'valor' => "required|numeric",
+            'qtd_telas' => "required|numeric"
+            
         ], [
-            'mega.required' => "O :attribute é obrigatório",
-            'mega.max' => "Só é permitido 4 caracteres",
+            'nome.required' => "O :attribute é obrigatório",
+            'nome.max' => "Só é permitido 255 caracteres",
             'valor.required' => "O :attribute é obrigatório",
-            'valor.max' => "Só é permitido 16 caracteres",
-            'conexao_id.required' => "O :attribute é obrigatório",
-
+            'valor.numeric' => "O valor precisa ser numérico!",
+            'qtd_telas.required' => "O :attribute é obrigatório",
+            'qtd_telas.numeric' => "O valor precisa ser numérico!",
         ]);
 
         $data = $request->all();
         
-        Plano_Internet::updateOrCreate(
+        planotv::updateOrCreate(
             ['id' => $request->id],
             $data
         );
 
-        return redirect('plano');
+        return redirect('planotv');
     }
 
     /**
@@ -125,26 +121,26 @@ class PlanoController extends Controller
      */
     public function destroy($id)
     {
-        $dado = Plano_Internet::findOrFail($id);
+        $dado = planotv::findOrFail($id);
         // dd($dado);
         $dado->delete();
 
-        return redirect('plano');
+        return redirect('planotv');
     }
 
     public function search(Request $request)
     {
-        if (!empty($request->mega)) {
-            $dados = Plano_Internet::where(
-                "mega",
+        if (!empty($request->nome)) {
+            $dados = planotv::where(
+                "nome",
                 "like",
-                "%" . $request->mega . "%"
+                "%" . $request->nome . "%"
             )->get();
         } else {
-            $dados = Plano_Internet::all();
+            $dados = planotv::all();
         }
         // dd($dados);
 
-        return view("planos.plano_list", ["dado" => $dados]);
+        return view("planostv.planotv_list", ["dado" => $dados]);
     }
 }

@@ -15,6 +15,7 @@ class Plano_Internet extends Model
         "mega",
         "valor",
         "locacao",
+        "conexao_id",
     ];
 
     protected $casts = [
