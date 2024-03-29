@@ -2,22 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanoController;
+use App\Http\Controllers\ProdutoController;
 
-Route::get('/', [PlanoController::class, 'index']);
-Route::get('/planos/create', [PlanoController::class, 'create']);
-
-Route::get('/contato', function () {
-    return view('contato');
+/*
+Route::resource('plano', PlanoController::class);
+*/
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('/produtos', function () {
 
-    $busca = request('search');
+Route::resource('plano', PlanoController::class);
+Route::post('/plano/search', [PlanoController::class, "search"])->name('plano.search');
 
-    return view('produtos', ['busca' => $busca]);
-});
+Route::resource('produto', ProdutoController::class);
+Route::post('/produto/search', [ProdutoController::class, "search"])->name('produto.search');
 
-Route::get('/produtos2/{id?}', function ($id = 1) {
-    return view('produto', ['id' => $id]);
-});
+
+
+
 
