@@ -65,6 +65,9 @@
                     <li class="nav-item">
                         <a class="nav-link active text-primary-emphasis" aria-current="page" href="/produto"><i class="fa-solid fa-box-open"></i> Produtos</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/pessoa"><i class="fa-solid fa-box-open"></i> Pessoas</a>
+                    </li>
                 </ul>
             </div>
         </div>
