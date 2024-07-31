@@ -21,9 +21,12 @@
                         <button type="submit" class="btn btn-warning"> <i class="fa-solid fa-magnifying-glass"></i>
                             Buscar</button>
                     </div>
-                    <div class="col-md-2 offset-md-4">
+                    <div class="col-md-2">
                         <a href="{{ url('plano/create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i>
                             Novo</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ url('plano/report') }}" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i> PDF</a>
                     </div>
                 </div>
             </form>

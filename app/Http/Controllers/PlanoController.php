@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Plano_Internet;
 use App\Models\Conexao;
+use PDF;
 
 class PlanoController extends Controller
 {
@@ -146,5 +147,19 @@ class PlanoController extends Controller
         // dd($dados);
 
         return view("planos.plano_list", ["dado" => $dados]);
+    }
+
+    public function report()
+    {
+        $planos = Plano_Internet::All();
+
+        $data = [
+            'titulo' => 'Relatório de Planos de Internet',
+            'planos'=> $planos,
+        ];
+
+        $pdf = PDF::loadView('planos.report', $data);
+
+        return $pdf->stream();
     }
 }

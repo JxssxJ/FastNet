@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Departamento;
+use PDF;
 
 class produtoController extends Controller
 {
@@ -144,5 +144,19 @@ class produtoController extends Controller
         // dd($dados);
 
         return view("produtos.produto_list", ["dado" => $dados]);
+    }
+
+    public function report()
+    {
+        $produtos = Produto::All();
+
+        $data = [
+            'titulo' => 'Relatório de Produtos',
+            'produtos'=> $produtos,
+        ];
+
+        $pdf = PDF::loadView('produtos.report', $data);
+
+        return $pdf->stream();
     }
 }

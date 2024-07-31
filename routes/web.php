@@ -1,33 +1,50 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\PlanoTVController;
 use App\Http\Controllers\PessoaController;
 
-
 /*
-Route::resource('plano', PlanoController::class);
-*/
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
+Route::get('/dashboard', function () {
+    return view('welcome');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('plano', PlanoController::class);
-Route::post('/plano/search', [PlanoController::class, "search"])->name('plano.search');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-Route::resource('produto', ProdutoController::class);
-Route::post('/produto/search', [ProdutoController::class, "search"])->name('produto.search');
+    Route::get('/plano/report',
+    [PlanoController::class, "report"])->name('plano.report');
+    Route::resource('plano', PlanoController::class);
+    Route::post('/plano/search', [PlanoController::class, "search"])->name('plano.search');
 
-Route::resource('planotv', PlanoTVController::class);
-Route::post('/planotv/search', [PlanoTVController::class, "search"])->name('planotv.search');
+    Route::get('/produto/report',
+    [ProdutoController::class, "report"])->name('produto.report');
+    Route::resource('produto', ProdutoController::class);
+    Route::post('/produto/search', [ProdutoController::class, "search"])->name('produto.search');
 
-Route::post('/pessoa/search', [PessoaController::class, "search"])->name('pessoa.search');
-Route::get('/pessoa/chart/',
-    [PessoaController::class, "chart"])->name('pessoa.chart');
-Route::get('/pessoa/report/',
-    [PessoaController::class, "report"])->name('pessoa.report');
-Route::resource('pessoa', PessoaController::class);
+    Route::resource('planotv', PlanoTVController::class);
+    Route::post('/planotv/search', [PlanoTVController::class, "search"])->name('planotv.search');
 
+    Route::post('/pessoa/search', [PessoaController::class, "search"])->name('pessoa.search');
+    Route::get(
+        '/pessoa/chart/',
+        [PessoaController::class, "chart"]
+    )->name('pessoa.chart');
+    Route::get(
+        '/pessoa/report/',
+        [PessoaController::class, "report"]
+    )->name('pessoa.report');
+    Route::resource('pessoa', PessoaController::class);
+});
+
+require __DIR__ . '/auth.php';

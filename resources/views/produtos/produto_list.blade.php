@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="container">
-        <div class="row row-gap-3 justify-content-center">
+        <div class="row row-gap-3">
             <h4 class="col-12 p-3 text-center"><span
                     class="p-2 bg-info bg-opacity-10 border rounded-start border-info rounded-end text-white"><b>Listagem de Produtos</b></span></h4>
 
@@ -20,11 +20,15 @@
                         <button type="submit" class="btn btn-warning"> <i class="fa-solid fa-magnifying-glass"></i>
                             Buscar</button>
                     </div>
-                    <div class="col-md-2 offset-md-4">
+                    <div class="col-md-2">
                         <a href="{{ url('produto/create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i>
                             Novo</a>
                     </div>
-                </div>
+
+                    <div class="col-md-2">
+                        <a href="{{ url('produto/report') }}" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+                    </div>
+                 </div>
             </form>
 
             <hr>
