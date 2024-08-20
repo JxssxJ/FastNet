@@ -25,17 +25,17 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($alunos as $aluno)
+            @forelse ($pessoas as $pessoa)
                 @php
-                    $imagem = !empty($aluno->imagem) ? $aluno->imagem : 'sem_imagem.jpg';
+                    $imagem = !empty($pessoa->imagem) ? $pessoa->imagem : 'sem_imagem.jpg';
                     $srcImagem = public_path()."/storage/".$imagem;
                 @endphp
                 <tr>
-                    <th scope="row">{{ $aluno->id }}</th>
+                    <th scope="row">{{ $pessoa->id }}</th>
                     <td><img src="{{ $srcImagem }}" alt="img" style="width: 100px"></td>
-                    <td>{{ $aluno->nome }}</td>
-                    <td>{{ $aluno->renda }}</td>
-                    <td>{{ $aluno->cpf }}</td>
+                    <td>{{ $pessoa->nome }}</td>
+                    <td>{{ $pessoa->renda }}</td>
+                    <td>{{ $pessoa->cpf }}</td>
 
                 </tr>
             @empty

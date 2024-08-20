@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pessoa;
-use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Charts\GraficoQtdPessoa;
 use PDF;
@@ -29,7 +28,7 @@ class PessoaController extends Controller
     public function create()
     {
 
-        return view("pessoa.create" );
+        return view("pessoa.create");
     }
 
     /**
@@ -55,7 +54,6 @@ class PessoaController extends Controller
 
         $data = $request->all();
         $imagem = $request->file('imagem');
-
         if ($imagem) {
             $nome_arquivo =
                 date('YmdHis') . "." . $imagem->getClientOriginalExtension();
@@ -114,6 +112,7 @@ class PessoaController extends Controller
 
         $data = $request->all();
         $imagem = $request->file('imagem');
+        //dd($imagem);
 
         if ($imagem) {
             $nome_arquivo =
@@ -171,13 +170,12 @@ class PessoaController extends Controller
         $pessoas = pessoa::All();
 
         $data = [
-            'titulo' => 'Relatório pessoas2',
-            'pessoas'=> $pessoas,
+            'titulo' => 'Relatório de Clientes Cadastrados',
+            'pessoas' => $pessoas,
         ];
 
         $pdf = PDF::loadView('pessoa.report', $data);
 
-        return $pdf->download('relatorio_pessoas.pdf');
+        return $pdf->stream();
     }
-
 }

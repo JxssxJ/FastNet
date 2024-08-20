@@ -66,6 +66,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $dado->withQueryString()->links('pagination::bootstrap-5') }}   
         </div>
     </div>
 @stop

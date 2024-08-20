@@ -57,16 +57,20 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/plano"><i class="fa-solid fa-wifi"></i> Planos de Internet</a>
+                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/plano"><i
+                                class="fa-solid fa-wifi"></i> Planos de Internet</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/planotv"><i class="fa-solid fa-tv"></i> Planos de TV</a>
+                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/planotv"><i
+                                class="fa-solid fa-tv"></i> Planos de TV</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/produto"><i class="fa-solid fa-box-open"></i> Produtos</a>
+                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/produto"><i
+                                class="fa-solid fa-box-open"></i> Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/pessoa"><i class="fa-solid fa-box-open"></i> Pessoas</a>
+                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/pessoa"><i
+                                class="fa-solid fa-box-open"></i> Pessoas</a>
                     </li>
                 </ul>
             </div>
@@ -78,9 +82,24 @@
             background-color: #212529;
         }
     </style>
-    @yield('content')
-    <footer class="position-absolute bottom-0 start-50 translate-middle-x">
-        <p class="text-white">FastNet Telecom &copy; 2024</p>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div>
+                @if ($errors->any())
+                    <b>Por favor, verifique os erros abaixo:</b>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li> {{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+            @yield('content')
+        </div>
+    </div>
+    <footer class="align-bottom">
+        <p class="text-center text-white">FastNet Telecom &copy; 2024</p>
     </footer>
 
     <!-- Bootstrap javascript-->

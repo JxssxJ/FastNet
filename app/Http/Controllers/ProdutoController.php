@@ -9,10 +9,11 @@ use PDF;
 
 class produtoController extends Controller
 {
+    private $pagination = 2;
     public function index()
     {
         //app/http/Controller
-        $dado = Produto::all();
+        $dado = Produto::paginate($this->pagination);
 
         //dd($dado);
 
