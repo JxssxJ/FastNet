@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Promocao;
 use Illuminate\Http\Request;
+use App\Models\Produto;
 use PDF;
 
 class PromocaoController extends Controller
@@ -26,8 +27,8 @@ class PromocaoController extends Controller
      */
     public function create()
     {
-
-        return view("promocoes.create");
+        $produtos = Produto::all();
+        return view("promocoes.create", ['produtos'  => $produtos]);
     }
 
     /**
@@ -42,13 +43,16 @@ class PromocaoController extends Controller
             'valor' => "required|max:6",
             'quantidade' => "required",
             'imagem' => "nullable|image|mimes:png,jpeg,jpg",
+            'produto_id' => "required",
         ], [
             'descricao.required' => "O :attribute é obrigatório",
             'descricao.max' => "Só é permitido 60 caracteres",
             'valor.required' => "O :attribute é obrigatório",
             'valor.max' => "Só é permitido 6 caracteres",
+            'quantidade.required' => "O :attribute é obrigatório",
             'imagem.image' => "Deve ser enviado uma imagem",
             'imagem.mimes' => "A imagem deve ser da extensão de PNG, JPEG ou JPG",
+            'produto_id.required' => "É necessário cadastrar um produto na promoção",
         ]);
 
         $data = $request->all();
@@ -83,8 +87,11 @@ class PromocaoController extends Controller
     {
         $dado = Promocao::findOrFail($id);
 
+        $produtos = Produto::all();
+
         return view("promocoes.create", [
             'dado' => $dado,
+            'produtos' => $produtos
         ]);
     }
 
@@ -100,6 +107,7 @@ class PromocaoController extends Controller
             'valor' => "required|max:6",
             'quantidade' => "required",
             'imagem' => "nullable|image|mimes:png,jpeg,jpg",
+            'produto_id' => "required",
         ], [
             'descricao.required' => "O :attribute é obrigatório",
             'descricao.max' => "Só é permitido 60 caracteres",
@@ -108,6 +116,7 @@ class PromocaoController extends Controller
             'quantidade.required' => "O :attribute é obrigatório",
             'imagem.image' => "Deve ser enviado uma imagem",
             'imagem.mimes' => "A imagem deve ser da extensão de PNG, JPEG ou JPG",
+            'produto_id.required' => "É necessário cadastrar um produto na promoção",
         ]);
 
         $data = $request->all();
@@ -165,10 +174,6 @@ class PromocaoController extends Controller
         return view("promocoes.list", ["dados" => $dados]);
     }
 
-    public function chart(GraficoQtdPessoa $pessoaChart)
-    {
-        return view("promocoes.chart", ["pessoaChart" => $pessoaChart->build()]);
-    }
 
     public function report()
     {

@@ -16,5 +16,14 @@ class Promocao extends Model
         "valor",
         "quantidade",
         "imagem",
+        "produto_id",
     ];
+
+    protected $casts = [
+        'produto_id'=>'integer',
+    ];
+
+    public function produtos(){
+        return $this->hasMany(Produto::class, 'produto_id');
+    }
 }

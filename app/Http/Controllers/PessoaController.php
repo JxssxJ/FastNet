@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pessoa;
+use App\Models\Plano_Internet;
 use Illuminate\Http\Request;
-use App\Charts\GraficoQtdPessoa;
 use PDF;
 
 class PessoaController extends Controller
@@ -27,7 +27,6 @@ class PessoaController extends Controller
      */
     public function create()
     {
-
         return view("pessoa.create");
     }
 
@@ -84,6 +83,7 @@ class PessoaController extends Controller
     {
         $dado = pessoa::findOrFail($id);
 
+
         return view("pessoa.create", [
             'dado' => $dado,
         ]);
@@ -100,7 +100,7 @@ class PessoaController extends Controller
             'nome' => "required|max:60",
             'cpf' => "required|max:11",
             'renda' => "nullable",
-            'imagem' => "nullable|image|mimes:png,jpeg,jpg",
+            'imagem' => "nullable|image|mimes:png,jpeg,jpg"
         ], [
             'nome.required' => "O :attribute é obrigatório",
             'nome.max' => "Só é permitido 60 caracteres",
@@ -165,10 +165,6 @@ class PessoaController extends Controller
         return view("pessoa.list", ["dados" => $dados]);
     }
 
-    public function chart(GraficoQtdPessoa $pessoaChart)
-    {
-        return view("pessoa.chart", ["pessoaChart" => $pessoaChart->build()]);
-    }
 
     public function report()
     {

@@ -17,4 +17,5 @@ class Pessoa extends Model
         "renda",
         "imagem",
     ];
+
 }

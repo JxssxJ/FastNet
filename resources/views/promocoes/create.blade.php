@@ -48,13 +48,21 @@
                         value="@if (!empty($dado->quantidade)) {{ $dado->quantidade }}@elseif (!empty(old('quantidade'))){{ old('quantidade') }}@else{{ '' }} @endif"><br>
                 </div>
 
-
+                <div class="form-group col-md-6 offset-md-3">
+                    <label class="text-white"><b>Produto</b></label><br>
+                    <select name="produto_id" class="form-select">
+                        @foreach ($produtos as $item)
+                            <option value="{{ $item->id }}">{{ $item->nome }}</option>
+                        @endforeach
+                    </select><br>
+                </div>
 
                 <div class="form-group col-md-6 offset-md-3">
                     @php
                         $descricao_imagem = !empty($dado->imagem) ? $dado->imagem : 'sem_imagem.jpg';
                         //dd($descricao_imagem);
                     @endphp
+                    <br>
                     <label for="">Imagem</label><br>
                     <img src="/storage/{{ $descricao_imagem }}" width="300px" alt="imagem" />
                     <input type="file" name="imagem" class="form-control"

@@ -16,14 +16,18 @@ class Produto extends Model
         "departamento_id",
         "valor",
         "qtd",
+        "promocao_id",
     ];
 
     protected $casts = [
-        'departamento_id'=>'integer'
+        'departamento_id'=>'integer',
+        'promocao_id'=>'integer'
     ];
 
     public function departamento(){
-
         return $this->belongsTo(Departamento::class, 'departamento_id');
+    }
+    public function promocao(){
+        return $this->belongsTo(Promocao::class, 'promocao_id');
     }
 }

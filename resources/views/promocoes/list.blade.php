@@ -7,8 +7,7 @@
     <div class="container">
         <div class="row row-gap-3 justify-content-center">
             <h4 class="col-12 p-3 text-center"><span
-                    class="p-2 bg-info bg-opacity-10 border rounded-start border-info rounded-end text-white"><b>Listagem de 
-                        Clientes Cadastrados</b></span></h4>
+                    class="p-2 bg-info bg-opacity-10 border rounded-start border-info rounded-end text-white"><b>Listagem de Promoções</b></span></h4>
 
             <form action="{{ route('promocao.search') }}" method="post">
                 <div class="row">
@@ -38,7 +37,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Descrição</th>
-                        <th>valor</th>
+                        <th>Valor (R$)</th>
                         <th>Quantidade</th>
                         <th>Imagem</th>
                         <th>Ação</th>
@@ -60,7 +59,7 @@
                             <td><img src="/storage/{{ $descricao_imagem }}" width="150px" alt="imagem" /></td>
 
 
-                            <td><a href="{{ route('promocao.edit', $item->id) }} "class="btn btn-primary" title="Editar"><i
+                            <td><a href="{{ route('promocao.edit', $item->id) }} "class="btn btn-primary" title=" ar"><i
                                         class="fa-solid fa-pen"></i></a></td>
                             <td>
                                 <form action="{{ route('promocao.destroy', $item) }}" method="post">

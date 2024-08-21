@@ -16,14 +16,21 @@ class Plano_Internet extends Model
         "valor",
         "locacao",
         "conexao_id",
+        "pessoa_id",
     ];
 
     protected $casts = [
-        'conexao_id'=>'integer'
+        'conexao_id'=>'integer',
+        'pessoa_id'=>'integer',
     ];
 
     public function conexao(){
 
         return $this->belongsTo(Conexao::class, 'conexao_id');
+    }
+
+    public function clientes(){
+
+        return $this->hasMany(Pessoa::class, 'pessoa_id');
     }
 }

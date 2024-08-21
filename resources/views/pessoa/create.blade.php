@@ -48,8 +48,6 @@
                         value="@if (!empty($dado->renda)) {{ $dado->renda }}@elseif (!empty(old('renda'))){{ old('renda') }}@else{{ '' }} @endif"><br>
                 </div>
 
-
-
                 <div class="form-group col-md-6 offset-md-3">
                     @php
                         $nome_imagem = !empty($dado->imagem) ? $dado->imagem : 'sem_imagem.jpg';
