@@ -9,10 +9,12 @@ use App\Models\planotv;
 
 class PlanoTVController extends Controller
 {
+    private $pagination = 5;
+
     public function index()
     {
         //app/http/Controller
-        $dado = planotv::all();
+        $dado = planotv::paginate($this->pagination);
 
         //dd($dado);
 

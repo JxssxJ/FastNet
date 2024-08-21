@@ -19,23 +19,23 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Imagem</th>
-                <th scope="col">Nome</th>
-                <th scope="col">renda</th>
-                <th scope="col">CPF</th>
+                <th scope="col">Descricao</th>
+                <th scope="col">quantidade</th>
+                <th scope="col">valor</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($pessoas as $pessoa)
+            @forelse ($promocoes as $promocao)
                 @php
-                    $imagem = !empty($pessoa->imagem) ? $pessoa->imagem : 'C:\laragon\www\FastNet\storage\app\public\sem_imagem.jpg';
+                    $imagem = !empty($promocao->imagem) ? $promocao->imagem : 'C:\laragon\www\FastNet\storage\app\public\sem_imagem.jpg';
                     $srcImagem = public_path()."C:\laragon\www\FastNet\storage\app\public\imagem".$imagem;
                 @endphp
                 <tr>
-                    <th scope="row">{{ $pessoa->id }}</th>
+                    <th scope="row">{{ $promocao->id }}</th>
                     <td><img src="{{ $imagem }}" alt="img" style="width: 100px"></td>
-                    <td>{{ $pessoa->nome }}</td>
-                    <td>{{ $pessoa->renda }}</td>
-                    <td>{{ $pessoa->cpf }}</td>
+                    <td>{{ $promocao->descricao }}</td>
+                    <td>{{ $promocao->quantidade }}</td>
+                    <td>{{ $promocao->valor }}</td>
 
                 </tr>
             @empty

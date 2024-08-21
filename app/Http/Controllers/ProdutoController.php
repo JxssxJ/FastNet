@@ -7,9 +7,9 @@ use App\Models\Produto;
 use App\Models\Departamento;
 use PDF;
 
-class produtoController extends Controller
+class ProdutoController extends Controller
 {
-    private $pagination = 2;
+    private $pagination = 5;
     public function index()
     {
         //app/http/Controller

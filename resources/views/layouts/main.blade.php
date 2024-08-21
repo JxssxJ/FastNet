@@ -70,7 +70,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-primary-emphasis" aria-current="page" href="/pessoa"><i
-                                class="fa-solid fa-box-open"></i> Pessoas</a>
+                                class="fa-regular fa-user"></i> Pessoas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-primary-emphasis" aria-current="page" href="/promocao"><i
+                                class="fa-solid fa-hand-holding-dollar"></i> Promoções</a>
                     </li>
                 </ul>
             </div>

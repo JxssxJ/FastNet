@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pessoa;
+use App\Models\Promocao;
 use Illuminate\Http\Request;
-use App\Charts\GraficoQtdPessoa;
 use PDF;
 
-class PessoaController extends Controller
+class PromocaoController extends Controller
 {
 
     private $pagination = 3;
@@ -15,11 +14,11 @@ class PessoaController extends Controller
     public function index()
     {
         //app/http/Controller
-        $dados = Pessoa::paginate($this->pagination);
+        $dados = Promocao::paginate($this->pagination);
 
         // dd($dados);
 
-        return view("pessoa.list", ["dados" => $dados]);
+        return view("promocoes.list", ["dados" => $dados]);
     }
 
     /**
@@ -28,7 +27,7 @@ class PessoaController extends Controller
     public function create()
     {
 
-        return view("pessoa.create");
+        return view("promocoes.create");
     }
 
     /**
@@ -39,15 +38,15 @@ class PessoaController extends Controller
         //app/http/Controller
 
         $request->validate([
-            'nome' => "required|max:60",
-            'cpf' => "required|max:11",
-            'renda' => "nullable",
+            'descricao' => "required|max:60",
+            'valor' => "required|max:6",
+            'quantidade' => "required",
             'imagem' => "nullable|image|mimes:png,jpeg,jpg",
         ], [
-            'nome.required' => "O :attribute é obrigatório",
-            'nome.max' => "Só é permitido 60 caracteres",
-            'cpf.required' => "O :attribute é obrigatório",
-            'cpf.max' => "Só é permitido 11 caracteres",
+            'descricao.required' => "O :attribute é obrigatório",
+            'descricao.max' => "Só é permitido 60 caracteres",
+            'valor.required' => "O :attribute é obrigatório",
+            'valor.max' => "Só é permitido 6 caracteres",
             'imagem.image' => "Deve ser enviado uma imagem",
             'imagem.mimes' => "A imagem deve ser da extensão de PNG, JPEG ou JPG",
         ]);
@@ -55,18 +54,18 @@ class PessoaController extends Controller
         $data = $request->all();
         $imagem = $request->file('imagem');
         if ($imagem) {
-            $nome_arquivo =
+            $descricao_arquivo =
                 date('YmdHis') . "." . $imagem->getClientOriginalExtension();
-            $diretorio = "imagem/pessoa/";
+            $diretorio = "imagem/promocao/";
 
-            $imagem->storeAs($diretorio, $nome_arquivo, 'public');
+            $imagem->storeAs($diretorio, $descricao_arquivo, 'public');
 
-            $data['imagem'] = $diretorio . $nome_arquivo;
+            $data['imagem'] = $diretorio . $descricao_arquivo;
         }
 
-        pessoa::create($data);
+        Promocao::create($data);
 
-        return redirect('pessoa');
+        return redirect('promocao');
     }
 
     /**
@@ -82,9 +81,9 @@ class PessoaController extends Controller
      */
     public function edit(string $id)
     {
-        $dado = pessoa::findOrFail($id);
+        $dado = Promocao::findOrFail($id);
 
-        return view("pessoa.create", [
+        return view("promocoes.create", [
             'dado' => $dado,
         ]);
     }
@@ -97,15 +96,16 @@ class PessoaController extends Controller
         //app/http/Controller
 
         $request->validate([
-            'nome' => "required|max:60",
-            'cpf' => "required|max:11",
-            'renda' => "nullable",
+            'descricao' => "required|max:60",
+            'valor' => "required|max:6",
+            'quantidade' => "required",
             'imagem' => "nullable|image|mimes:png,jpeg,jpg",
         ], [
-            'nome.required' => "O :attribute é obrigatório",
-            'nome.max' => "Só é permitido 60 caracteres",
-            'cpf.required' => "O :attribute é obrigatório",
-            'cpf.max' => "Só é permitido 11 caracteres",
+            'descricao.required' => "O :attribute é obrigatório",
+            'descricao.max' => "Só é permitido 60 caracteres",
+            'valor.required' => "O :attribute é obrigatório",
+            'valor.max' => "Só é permitido 6 caracteres",
+            'quantidade.required' => "O :attribute é obrigatório",
             'imagem.image' => "Deve ser enviado uma imagem",
             'imagem.mimes' => "A imagem deve ser da extensão de PNG, JPEG ou JPG",
         ]);
@@ -115,21 +115,21 @@ class PessoaController extends Controller
         //dd($imagem);
 
         if ($imagem) {
-            $nome_arquivo =
+            $descricao_arquivo =
                 date('YmdHis') . "." . $imagem->getClientOriginalExtension();
-            $diretorio = "imagem/pessoa/";
+            $diretorio = "imagem/promocao/";
 
-            $imagem->storeAs($diretorio, $nome_arquivo, 'public');
+            $imagem->storeAs($diretorio, $descricao_arquivo, 'public');
 
-            $data['imagem'] = $diretorio . $nome_arquivo;
+            $data['imagem'] = $diretorio . $descricao_arquivo;
         }
 
-        pessoa::updateOrCreate(
+        Promocao::updateOrCreate(
             ['id' => $request->id],
             $data
         );
 
-        return redirect('pessoa');
+        return redirect('promocao');
     }
 
     /**
@@ -137,7 +137,7 @@ class PessoaController extends Controller
      */
     public function destroy($id)
     {
-        $dado = pessoa::findOrFail($id);
+        $dado = Promocao::findOrFail($id);
         // dd($dado);
         $image_path = public_path('storage/'.$dado->imagem);
 
@@ -146,40 +146,40 @@ class PessoaController extends Controller
         }
         $dado->delete();
 
-        return redirect('pessoa');
+        return redirect('promocao');
     }
 
     public function search(Request $request)
     {
-        if (!empty($request->nome)) {
-            $dados = pessoa::where(
-                "nome",
+        if (!empty($request->descricao)) {
+            $dados = Promocao::where(
+                "descricao",
                 "like",
-                "%" . $request->nome . "%"
+                "%" . $request->descricao . "%"
             )->paginate($this->pagination);
         } else {
-            $dados = pessoa::paginate($this->pagination);
+            $dados = Promocao::paginate($this->pagination);
         }
         // dd($dados);
 
-        return view("pessoa.list", ["dados" => $dados]);
+        return view("promocoes.list", ["dados" => $dados]);
     }
 
     public function chart(GraficoQtdPessoa $pessoaChart)
     {
-        return view("pessoa.chart", ["pessoaChart" => $pessoaChart->build()]);
+        return view("promocoes.chart", ["pessoaChart" => $pessoaChart->build()]);
     }
 
     public function report()
     {
-        $pessoas = pessoa::All();
+        $promocoes = Promocao::All();
 
         $data = [
-            'titulo' => 'Relatório de Clientes Cadastrados',
-            'pessoas' => $pessoas,
+            'titulo' => 'Relatório de Promoções Ativas',
+            'promocoes' => $promocoes,
         ];
 
-        $pdf = PDF::loadView('pessoa.report', $data);
+        $pdf = PDF::loadView('promocoes.report', $data);
 
         return $pdf->stream();
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\PlanoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\PlanoTVController;
 use App\Http\Controllers\PessoaController;
+use App\Http\Controllers\PromocaoController;
 
 /*
 Route::get('/', function () {
@@ -45,6 +46,17 @@ Route::middleware('auth')->group(function () {
         [PessoaController::class, "report"]
     )->name('pessoa.report');
     Route::resource('pessoa', PessoaController::class);
+
+    Route::post('/promocao/search', [PromocaoController::class, "search"])->name('promocao.search');
+    Route::get(
+        '/promocao/chart/',
+        [PromocaoController::class, "chart"]
+    )->name('promocao.chart');
+    Route::get(
+        '/promocao/report/',
+        [PromocaoController::class, "report"]
+    )->name('promocao.report');
+    Route::resource('promocao', PromocaoController::class);
 });
 
 require __DIR__ . '/auth.php';

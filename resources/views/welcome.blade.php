@@ -48,7 +48,7 @@
 
       <div class="container p-2">
           <div class="row" id="opcoes-container">
-              <div class="col-sm-4 mb-3 mb-sm-0"">
+              <div class="col-sm-4 mb-3 mb-sm-0">
                   <div class="card" style="width: 22rem;">
                       <img src="/img/internet.jpg" class="card-img-top">
                       <div class="card-body">
@@ -64,11 +64,11 @@
 
                   </div>
               </div>
-              <div class="col-sm-4 mb-3 mb-sm-0"">
+              <div class="col-sm-4 mb-3 mb-sm-0">
                   <div class="card" style="width: 22rem;">
                       <img src="/img/tv.png" class="card-img-top">
                       <div class="card-body">
-                          <h5 class="card-title">Planos de TELEVISÃO</h5>
+                          <h5 class="card-title">Planos de Televisão</h5>
                           <p class="card-text">Gerenciar tipos de canais, quantidade de telas e valores de
                               todos os
                               seus planos em
@@ -93,8 +93,44 @@
               </div>
           </div>
       </div>
-      <footer class="position-absolute bottom-0 start-50 translate-middle-x">
-          <p>FastNet Telecom &copy; 2024</p>
+
+      <div class="container p-2">
+        <div class="row" id="opcoes-container">
+            <div class="col-sm-4 mb-3 mb-sm-0">
+                <div class="card" style="width: 22rem;">
+                    <img src="/img/clientes.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Pessoas</h5>
+                        <p class="card-text"> Gerenciar cadastros de todos os
+                            seus
+                            clientes em
+                            um só lugar!
+                        </p>
+                        <a href="plano" class="btn btn-primary">Clique aqui para acessar
+                            <b>PESSOAS</b></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-4 mb-3 mb-sm-0">
+                <div class="card" style="width: 22rem;">
+                    <img src="/img/promocao.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Promoções</h5>
+                        <p class="card-text">Gerenciar ofertas, valores e quantidade de
+                            todos as
+                            suas promoções em
+                            um só lugar!</p>
+                        <a href="planotv" class="btn btn-primary">Clique aqui para acessar
+                            <b>PROMOÇÕES</b></a>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+      <footer class="align-bottom">
+          <p class="text-center">FastNet Telecom &copy; 2024</p>
       </footer>
 
       <!-- Bootstrap javascript-->

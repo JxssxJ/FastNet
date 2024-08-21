@@ -10,10 +10,11 @@ use PDF;
 
 class PlanoController extends Controller
 {
+    private $pagination = 5;
     public function index()
     {
         //app/http/Controller
-        $dado = Plano_Internet::all();
+        $dado = Plano_Internet::paginate($this->pagination);
 
         //dd($dado);
 
